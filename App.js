@@ -1,38 +1,40 @@
 import * as React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
-import Constants from 'expo-constants';
+import DealList from './components/DealList';
+import fetch from './fetch';
 
-// You can import from local files
-import AssetExample from './components/AssetExample';
-
-// or any pure javascript modules available in npm
-import { Card } from 'react-native-paper';
-
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.paragraph}>
-        Change code in the editor and watch it change on your phone! Save to get a shareable url.
-      </Text>
-      <Card>
-        <AssetExample />
-      </Card>
-    </View>
-  );
+export default class App extends React.Component {
+  state = {
+    deals: [],
+  };
+  async componentDidMount() {
+    const deals = await fetch.fetchInitial();
+    // console.log('data', deals);
+    this.setState((prevState) => {
+      return { deals };
+    });
+  }
+  render() {
+    return (
+      <View style={styles.container}>
+        {this.state.deals.length > 0 ? (
+          <DealList data={this.state.deals}/>
+        ) : (
+          <Text style={styles.header}>Sales</Text>
+        )}
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    paddingTop: Constants.statusBarHeight,
     backgroundColor: '#ecf0f1',
-    padding: 8,
+    alignItems: 'center',
   },
-  paragraph: {
-    margin: 24,
-    fontSize: 18,
-    fontWeight: 'bold',
-    textAlign: 'center',
+  header: {
+    fontSize: 40,
   },
 });
