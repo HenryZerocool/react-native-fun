@@ -1,19 +1,17 @@
 import * as React from 'react';
 import { Text, View, FlatList, StyleSheet } from 'react-native';
+import DealItem from './DealItem'
 
 export default class DealList extends React.Component {
   componentDidMount() {
-    // console.log(this.props.data);
-    // for (let abc of this.props.data){
-    //   console.log('abc', abc.title);
-    // }
+    console.log(this.props.data);
   }
   render() {
     return (
       <View>
         <FlatList
           data={this.props.data}
-          renderItem={({ item }) => <Text>{item.title}</Text>}
+          renderItem={({ item }) => <DealItem style={styles.list} deal={item}></DealItem>}
         />
       </View>
     );
@@ -21,7 +19,7 @@ export default class DealList extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  header: {
-    fontSize: 40,
+  list: {
+    fontSize: 20,
   },
 });
