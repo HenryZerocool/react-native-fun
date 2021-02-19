@@ -19,6 +19,15 @@ export default {
       console.log('err', err)
     }
   },
+  async searchByTerm(terms) {
+    try {
+      const res = await fetch(apiHost + '/api/deals?searchTerm=' + terms);
+      const resJson = await res.json();
+      return resJson;
+    } catch(err) {
+      console.log('err', err)
+    }
+  },
   priceInDollar(priceInCents) {
     return `$${priceInCents/100}`
   }
