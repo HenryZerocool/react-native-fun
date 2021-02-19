@@ -4,14 +4,14 @@ import DealItem from './DealItem'
 
 export default class DealList extends React.Component {
   componentDidMount() {
-    console.log(this.props.data);
+    // console.log(this.props.data);
   }
   render() {
     return (
       <View>
         <FlatList
           data={this.props.data}
-          renderItem={({ item }) => <DealItem style={styles.list} deal={item}></DealItem>}
+          renderItem={({ item }) => <DealItem style={styles.list} deal={item} onPress={this.props.onPress}></DealItem>}
         />
       </View>
     );
