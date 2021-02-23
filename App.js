@@ -20,7 +20,7 @@ export default class App extends React.Component {
     currentDealId: null,
   };
   animateLogo = (direction = 1) => {
-    let width = Dimensions.get('window').width;
+    const width = Dimensions.get('window').width;
     Animated.timing(this.titlePos, {
       toValue: (width / 2 - 100) * direction,
       duration: 1000,

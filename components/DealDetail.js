@@ -2,6 +2,7 @@ import * as React from 'react';
 import {
   Text,
   View,
+  ScrollView,
   Image,
   Button,
   TouchableOpacity,
@@ -87,6 +88,7 @@ export default class DealItem extends React.Component {
           source={{ uri: deal.media[this.state.imageIndex] }}
         />
         <Text style={styles.title}>{deal.title}</Text>
+        <ScrollView>
         <View style={styles.info}>
           <View style={styles.subtitle}>
             <Text>{deal.cause.name}</Text>
@@ -98,10 +100,11 @@ export default class DealItem extends React.Component {
               <Text>{deal.user.name}</Text>
             </View>
           )}
-        </View>
+          </View>
         <View style={styles.description}>
           <Text>{deal.description}</Text>
         </View>
+        </ScrollView>
         <Button title="Buy it from provider" onPress={this.openExLink} />
       </View>
     );
